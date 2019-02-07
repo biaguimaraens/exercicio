@@ -1,3 +1,25 @@
-<p>
-  trainer works!
-</p>
+
+<div class="container">
+  <p>O nome do trainer é {{ trainer }}</p>
+</div>
+<div class="container">
+  <div class="row">
+    <p>3 vezes 2 é {{ valor * 2 }}</p>
+    <p>3 vezes 1 é {{ getValor() * 3 }}</p>
+    <p>false e true é {{ false && condicao }}</p>
+    <p>A condicao é {{ condicao ? 'Verdadeira' : 'Falsa' }}</p>
+  </div>
+</div>
+<div class="row">
+  <img [src]="imagemPikachu">
+  <button class="waves-effect waves light btn" [disabled]="buttonDisabled">
+    Um botão qualquer
+  </button>
+</div>
+<div calss="row">
+  <button class="waves effect waves-light btn" (click)="onClick()">
+    SHAZAM
+  </button>
+  <p *ngIf="is_show">Exemplo utilizando ngIf</p>
+</div>
+<app-trainer-child [trainers]="trainers" (removetrainer)="delete($event)"></app-trainer-child>
