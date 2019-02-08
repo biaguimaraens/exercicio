@@ -1,42 +1,134 @@
-<div class="animated fadeIn row col s12 offset-s2" id="row1">
-  <h4>Pesquise o seu pokemon!</h4>
-  <div class="row">
-
-    <form #nome="ngForm" (ngSubmit)="onSubmit()">
-      <!--Barra de pesquisa-->
+<div class="row">
+    <form class="col l8 offset-l2"#login="ngForm" (ngSubmit)="onSubmit(login)">
       <div class="row">
-        <div class="input-field col l8 offset-l2 s12">
-          <input type="text" id="nome" name="nome" [placeholder]="placeholderValue" [(ngModel)]="nomeInput">
+        <div class="input-field col l4 offset-l2 m6 offset-m4 s10 offset-s1">
+          <input id="usuario" type="text" name="usuario" ngModel>
+          <label for="usuario">Usuário</label>
         </div>
-      </div>
-      <!--Botão de pesquisar-->
-      <div class="row">
-        <button class="waves-effect waves-light btn" type="submit" [disabled]="(nomeInput == '')">Pesquisar</button>
+        <div class="input-field col l4 m6 offset-m4 s10 offset-s1">
+          <input id="dataNascimento" type="text" name="dataNascimento" ngModel class="datepicker" materialize="pickadate" [materializeParams]="[{ selectYears:200}]">
+          <label for="dataNascimento">Data de Nascimento</label>
+        </div>
+        <div class="input-field col l8 offset-l2 m6 offset-m4 s10 offset-s1">
+          <input id="email" type="email">
+          <label for="email">Email</label>
+        </div>
+        <!--radio pra escolher lugar inicial-->
+        <div class="row">
+          <div class="col l8 offset-l2 m6 offset-m4 s8 offset-s2">
+            <p class="center-align"> Escolha sua região de início</p>
+            <p class=" col l3 m5 s8">
+              <input name="inicio" type="radio" id="kanto"/>
+              <label for="kanto">Kanto</label>
+            </p>
+            <p class=" col l3 m5 s8">
+              <input name="inicio" type="radio" id="johtu"/>
+              <label for="johtu">Johtu</label>
+            </p>
+            <p class=" col l3 m5 s8">
+              <input name="inicio" type="radio" id="huenn"/>
+              <label for="huenn">Huenn</label>
+            </p>
+            <p class=" col l3 m5 s8">
+              <input name="inicio" type="radio" id="sinnoh"/>
+              <label for="sinnoh">Sinnuh</label>
+            </p>
+            <p class=" col l3 m5 s8">
+              <input name="inicio" type="radio" id="unuva"/>
+              <label for="unuva">Unuva</label>
+            </p>
+            <p class=" col l3 m5 s8">
+              <input name="inicio" type="radio" id="kalos"/>
+              <label for="kalos">Kalos</label>
+            </p>
+            <p class=" col l3 m5 s8">
+              <input name="inicio" type="radio" id="alola"/>
+              <label for="alola">Alola</label>
+            </p>
+          </div>
+        </div>
+        <div id="row1">
+          <h4>Pesquise o seu pokemon!</h4>
+          <div class="row">
+
+            <form #nome="ngForm" (ngSubmit)="onSubmit()">
+              <!--Barra de pesquisa-->
+              <div class="row">
+                <div class="input-field col l8 offset-l2 s12">
+                  <input type="text" id="nome" name="nome" [placeholder]="placeholderValue" [(ngModel)]="nomeInput">
+                </div>
+              </div>
+              <!--Botão de pesquisar-->
+              <div class="row">
+                <button class="waves-effect waves-light btn" type="submit" [disabled]="(nomeInput == '')">Pesquisar</button>
+              </div>
+            </form>
+
+            <div class="row" *ngIf="error">
+              <p class="red-text">Erro ao pesquisar Pokémon!</p>
+            </div>
+
+            <div class="row" *ngIf="pokemon">
+              <!--Abaixo é o card que irá mostrar os resultados da pesquisa-->
+              <div class="col l2 m3 s10">
+                <!--Card médio que mostra uma sombra quando passamos o cursor por cima-->
+                <div class="card">
+                  <!--Imagem do card-->
+                  <div class="card-image">
+                    <img [src]="pokemon.sprites.front_default">
+                  </div>
+                  <!--Conteúdo do card-->
+                  <div class="card-content">
+                    <p><b>Id:</b> {{ pokemon.id }}</p>
+                    <p><b>Altura:</b> {{ pokemon.height }}</p>
+                    <p><b>Peso:</b> {{ pokemon.weight }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        
+        <!--checkbox pra possiveis lugares-->
+        <div class="row">
+          <div class="col l8 offset-l2 m6 offset-m4 s8 offset-s2">
+            <p class="center-align"> Pretende visitar alguma dessas regiões? (opcional)</p>
+                <p class="col l3 m5 s8">
+                  <input type="checkbox" class="filled-in" id="kanto2"/>
+                  <label for="kanto2">Kanto</label>
+                </p>
+                <p class="col l3 m5 s8">
+                  <input type="checkbox" class="filled-in" id="johtu2"/>
+                  <label for="johtu2">Johtu</label>
+                </p>
+                <p class="col l3 m5 s8">
+                  <input type="checkbox" class="filled-in" id="huenn2"/>
+                  <label for="huenn2">Huenn</label>
+                </p>
+                <p class="col l3 m5 s8">
+                  <input type="checkbox" class="filled-in" id="sinnah2"/>
+                  <label for="sinnah2">Sinnah</label>
+                </p>
+                <p class="col l3 m5 s8">
+                  <input type="checkbox" class="filled-in" id="unuva2"/>
+                  <label for="unuva2">Unuva</label>
+                </p>
+                <p class="col l3 m5 s8">
+                  <input type="checkbox" class="filled-in" id="kalos2"/>
+                  <label for="kalos2">Kalos</label>
+                </p>
+                <p class="col l3 m5 s8">
+                  <input type="checkbox" class="filled-in" id="alola2"/>
+                  <label for="alola2">Alola</label>
+                </p>
+          </div>
+        </div> 
+        <div class="row col l4 offset-l4 m12 offset-m6 s12">
+          <button class="waves-effect waves-light btn" type="submit">Submeter</button>
+        </div>
       </div>
     </form>
-
-    <div class="row" *ngIf="error">
-      <p class="red-text">Erro ao pesquisar Pokémon!</p>
-    </div>
-
-    <div class="row" *ngIf="pokemon">
-      <!--Abaixo é o card que irá mostrar os resultados da pesquisa-->
-      <div class="col l2 m3 s10">
-        <!--Card médio que mostra uma sombra quando passamos o cursor por cima-->
-        <div class="card">
-          <!--Imagem do card-->
-          <div class="card-image">
-            <img [src]="pokemon.sprites.front_default">
-          </div>
-          <!--Conteúdo do card-->
-          <div class="card-content">
-            <p><b>Id:</b> {{ pokemon.id }}</p>
-            <p><b>Altura:</b> {{ pokemon.height }}</p>
-            <p><b>Peso:</b> {{ pokemon.weight }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>

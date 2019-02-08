@@ -14,7 +14,6 @@ import { PokemonService } from './services/pokemon.service';
 import { TrainerComponent } from './pages/trainer/trainer.component';
 import { TrainerChildComponent } from './pages/trainer/trainer-child/trainer-child.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
